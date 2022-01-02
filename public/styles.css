@@ -1,0 +1,14 @@
+html,
+body,
+main,
+#__nuxt {
+  height: 100%;
+}
+* {
+  margin: 0;
+}
+h1 {
+  padding: 24px 0;
+  text-align: center;
+  color: #f7fafc;
+}

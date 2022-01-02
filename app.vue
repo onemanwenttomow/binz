@@ -1,54 +1,59 @@
 <script setup lang="ts">
-import { isToday, isTomorrow, isFuture } from 'date-fns';
+import { isToday, isTomorrow, isFuture } from "date-fns";
 const cols = {
-  'Gelbe Tonne': 'yellow',
-  Biotonne: 'green',
-  Reststoff: 'gray',
-  'Blaue Tonne': 'blue',
+  "Gelbe Tonne": "yellow",
+  Biotonne: "green",
+  Reststoff: "gray",
+  "Blaue Tonne": "blue"
 };
 
 function createDate(str: string): Date {
-  const [day, month, year] = str.split('.');
+  const [day, month, year] = str.split(".");
   return new Date(Number(year), Number(month) - 1, Number(day));
 }
 
-const { data: binzData } = await useAsyncData('binz', () => $fetch('/api/binz'));
+const { data: binzData } = await useAsyncData("binz", () =>
+  $fetch("/api/binz")
+);
 const isMounted = ref(false);
 const attributes = computed(() =>
   binzData.value.map((binDay) => {
-    const [day, month, year] = binDay.date.split('.');
+    const [day, month, year] = binDay.date.split(".");
     return {
       key: binDay.date,
       highlight: cols[binDay.bin],
       dates: createDate(binDay.date),
       popover: {
-        label: binDay.bin,
-      },
+        label: binDay.bin
+      }
     };
-  }),
+  })
 );
 const nextBinComing = computed(() =>
   binzData.value.find(
-    (binDay) => isToday(createDate(binDay.date)) || isTomorrow(createDate(binDay.date)),
-  ),
+    (binDay) =>
+      isToday(createDate(binDay.date)) || isTomorrow(createDate(binDay.date))
+  )
 );
 const nextBinComingColor = computed(() =>
-  nextBinComing.value ? nextBinComing.value.bin : '#1a202c',
+  nextBinComing.value ? nextBinComing.value.bin : "#1a202c"
 );
-const nextBin = computed(() => binzData.value.find((binDay) => isFuture(createDate(binDay.date))));
+const nextBin = computed(() =>
+  binzData.value.find((binDay) => isFuture(createDate(binDay.date)))
+);
 
 onMounted(() => {
   isMounted.value = true;
   attributes.value.push({
-    key: 'today',
-    bar: 'red',
-    dates: new Date(),
+    key: "today",
+    bar: "red",
+    dates: new Date()
   });
 });
 </script>
 
 <template>
-  <main>
+  <main :style="`backgroundColor: ${nextBinComingColor}`">
     <h1>{{ nextBin.day }} - {{ nextBin.bin }}</h1>
     <div v-if="isMounted" class="calendar-container">
       <v-calendar :attributes="attributes" :first-day-of-week="2" is-dark />
@@ -56,28 +61,7 @@ onMounted(() => {
   </main>
 </template>
 
-<style>
-html,
-body,
-main,
-#__nuxt {
-  height: 100%;
-}
-
-* {
-  margin: 0;
-}
-
-h1 {
-  padding: 24px 0;
-  text-align: center;
-  color: #f7fafc;
-}
-
-main {
-  background-color: v-bind(nextBinComingColor);
-}
-
+<style scoped>
 .calendar-container {
   display: flex;
   justify-content: center;
