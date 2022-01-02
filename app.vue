@@ -21,6 +21,9 @@ const attributes = computed(() =>
       key: binDay.date,
       highlight: cols[binDay.bin],
       dates: createDate(binDay.date),
+      popover: {
+        label: binDay.bin,
+      },
     };
   }),
 );
@@ -30,20 +33,25 @@ const nextBinComing = computed(() =>
   ),
 );
 const nextBinComingColor = computed(() =>
-  nextBinComing.value ? nextBinComing.value.bin : 'white',
+  nextBinComing.value ? nextBinComing.value.bin : '#1a202c',
 );
 const nextBin = computed(() => binzData.value.find((binDay) => isFuture(createDate(binDay.date))));
 
 onMounted(() => {
   isMounted.value = true;
+  attributes.value.push({
+    key: 'today',
+    bar: 'red',
+    dates: new Date(),
+  });
 });
 </script>
 
 <template>
   <main>
-    <h1 style="text-align: center">{{ nextBin.day }} - {{ nextBin.bin }}</h1>
-    <div v-if="isMounted" style="display: flex; justify-content: center">
-      <v-calendar :attributes="attributes" />
+    <h1>{{ nextBin.day }} - {{ nextBin.bin }}</h1>
+    <div v-if="isMounted" class="calendar-container">
+      <v-calendar :attributes="attributes" :first-day-of-week="2" is-dark />
     </div>
   </main>
 </template>
@@ -62,9 +70,16 @@ main,
 
 h1 {
   padding: 24px 0;
+  text-align: center;
+  color: #f7fafc;
 }
 
 main {
   background-color: v-bind(nextBinComingColor);
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
 }
 </style>
