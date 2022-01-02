@@ -7,6 +7,13 @@ const cols = {
   "Blaue Tonne": "blue"
 };
 
+const cssColors = {
+  yellow: "#f6e05e",
+  green: "#68d391",
+  gray: "#cbd5e0",
+  blue: "#63b3ed"
+};
+
 function createDate(str: string): Date {
   const [day, month, year] = str.split(".");
   return new Date(Number(year), Number(month) - 1, Number(day));
@@ -42,6 +49,8 @@ const nextBin = computed(() =>
   binzData.value.find((binDay) => isFuture(createDate(binDay.date)))
 );
 
+const cssColor = computed(() => cssColors[cols[nextBin.value.bin]]);
+
 onMounted(() => {
   isMounted.value = true;
   attributes.value.push({
@@ -54,9 +63,17 @@ onMounted(() => {
 
 <template>
   <main :style="`backgroundColor: ${nextBinComingColor}`">
-    <h1>{{ nextBin.day }} - {{ nextBin.bin }}</h1>
-    <div v-if="isMounted" class="calendar-container">
-      <v-calendar :attributes="attributes" :first-day-of-week="2" is-dark />
+    <h1>
+      {{ nextBin.day }} -
+      <span :style="`color: ${cssColor}`">{{ nextBin.bin }}</span>
+    </h1>
+    <div class="calendar-container">
+      <v-calendar
+        v-if="isMounted"
+        :attributes="attributes"
+        :first-day-of-week="2"
+        is-dark
+      />
     </div>
   </main>
 </template>
