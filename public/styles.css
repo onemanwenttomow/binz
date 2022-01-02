@@ -12,3 +12,8 @@ h1 {
   text-align: center;
   color: #f7fafc;
 }
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+}

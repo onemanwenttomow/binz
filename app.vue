@@ -60,10 +60,3 @@ onMounted(() => {
     </div>
   </main>
 </template>
-
-<style scoped>
-.calendar-container {
-  display: flex;
-  justify-content: center;
-}
-</style>
