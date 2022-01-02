@@ -10,13 +10,4 @@ const cols = {
 };
 
 const binzData: BinDay[] = data;
-export default () =>
-  binzData.map((binDay, i) => {
-    const dmy = binDay.date.split('.');
-    const d = new Date(Number(dmy[2]), Number(dmy[1]) - 1, Number(dmy[0]) + 1);
-    return {
-      key: i,
-      highlight: cols[binDay.bin],
-      dates: d,
-    };
-  });
+export default () => binzData;
