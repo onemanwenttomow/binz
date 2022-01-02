@@ -65,7 +65,10 @@ onMounted(() => {
   <main :style="`backgroundColor: ${nextBinComingColor}`">
     <h1>
       {{ nextBin.day }} -
-      <span :style="`color: ${cssColor}`">{{ nextBin.bin }}</span>
+      <span
+        :style="`background-color: ${cssColor}; color: #1a202c; padding: 0 4px;`"
+        >{{ nextBin.bin }}</span
+      >
     </h1>
     <div class="calendar-container">
       <v-calendar
