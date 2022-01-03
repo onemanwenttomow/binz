@@ -36,6 +36,9 @@ main {
 }
 
 .logo-container {
+  position: fixed;
+  z-index: 100;
+  top: 24px;
   display: flex;
   gap: 1px;
   background-color: #1a202c;
