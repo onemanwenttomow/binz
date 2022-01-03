@@ -62,11 +62,13 @@ useMeta({
 
 <template>
   <main :style="`backgroundColor: ${cssColor}`">
+    <Logo />
     <h1>
-      {{ nextBin.day }} -
-      <span :style="`background-color: ${cssColor}; color: #1a202c; padding: 0 4px;`">{{
-        nextBin.bin
-      }}</span>
+      {{ nextBin.day }}
+      <span
+        :style="`background-color: ${cssColor}; color: #1a202c; padding: 0 4px; display: block; text-shadow: none;`"
+        >{{ nextBin.bin }}</span
+      >
     </h1>
     <div class="calendar-container">
       <v-calendar v-if="isMounted" :attributes="attributes" :first-day-of-week="2" is-dark />
