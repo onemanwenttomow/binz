@@ -8,10 +8,10 @@ const cols = {
 };
 
 const cssColors = {
-  yellow: "#f6e05e",
-  green: "#68d391",
-  gray: "#cbd5e0",
-  blue: "#63b3ed"
+  "Gelbe Tonne": "#f6e05e",
+  Biotonne: "#68d391",
+  Reststoff: "#cbd5e0",
+  "Blaue Tonne": "#63b3ed"
 };
 
 function createDate(str: string): Date {
@@ -49,7 +49,7 @@ const nextBin = computed(() =>
   binzData.value.find((binDay) => isFuture(createDate(binDay.date)))
 );
 
-const cssColor = computed(() => cssColors[cols[nextBin.value.bin]]);
+const cssColor = computed(() => cssColors[nextBinComingColor.value]);
 
 onMounted(() => {
   isMounted.value = true;
@@ -62,7 +62,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main :style="`backgroundColor: ${nextBinComingColor}`">
+  <main :style="`backgroundColor: ${cssColor}`">
     <h1>
       {{ nextBin.day }} -
       <span
