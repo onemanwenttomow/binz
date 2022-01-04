@@ -43,7 +43,11 @@ const nextBinComing = computed(() =>
 const nextBinComingColor = computed(() =>
   nextBinComing.value ? nextBinComing.value.bin : '#1a202c',
 );
-const nextBin = computed(() => binzData.value.find((binDay) => isFuture(createDate(binDay.date))));
+const nextBin = computed(() =>
+  binzData.value.find(
+    (binDay) => isToday(createDate(binDay.date)) || isFuture(createDate(binDay.date)),
+  ),
+);
 const cssColor = computed(() => cssColors[nextBinComingColor.value]);
 
 onMounted(() => {
