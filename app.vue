@@ -84,7 +84,9 @@ useMeta({
     <h1>
       {{ nextBin.day }}
       <span
-        :style="`background-color: ${cssColor}; color: #1a202c; padding: 0 4px; display: block; text-shadow: none;`"
+        :style="`background-color: ${
+          cssColors[nextBin.bin]
+        }; color: #1a202c; padding: 0 4px; display: block; text-shadow: none;`"
         >{{ nextBin.bin }}</span
       >
     </h1>
