@@ -9,10 +9,16 @@ main,
   margin: 0;
 }
 
+:root {
+  --green: hsl(148, 63%, 31%);
+  --yellow: hsl(42, 94%, 60%);
+  --gray: hsl(184, 9%, 62%);
+  --blue: hsl(229, 100%, 59%);
+}
+
 body {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
+  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 h1 {
@@ -41,12 +47,93 @@ main {
   z-index: 100;
   top: 24px;
   display: flex;
-  gap: 4px;
+  gap: 8px;
   background-color: #1a202c;
   border: solid 4px #1a202c;
 }
 
-.logo-container div {
+.logo-container > div {
   height: 50px;
   width: 25px;
+}
+
+.bin {
+  position: relative;
+}
+
+.lid {
+  width: 29px;
+  height: 4px;
+  position: absolute;
+  top: 4px;
+  left: -2px;
+}
+
+.lid::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+}
+
+.lid::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 2px 2px 0 0;
+}
+
+.green-lid {
+  background-color: var(--green);
+}
+
+.green-lid::before {
+  border-color: transparent var(--green) transparent transparent;
+}
+
+.green-lid::after {
+  border-color: var(--green) transparent transparent transparent;
+}
+
+.yellow-lid {
+  background-color: var(--yellow);
+}
+
+.yellow-lid::before {
+  border-color: transparent var(--yellow) transparent transparent;
+}
+
+.yellow-lid::after {
+  border-color: var(--yellow) transparent transparent transparent;
+}
+
+.gray-lid {
+  background-color: var(--gray);
+}
+
+.gray-lid::before {
+  border-color: transparent var(--gray) transparent transparent;
+}
+
+.gray-lid::after {
+  border-color: var(--gray) transparent transparent transparent;
+}
+
+.blue-lid {
+  background-color: var(--blue);
+}
+
+.blue-lid::before {
+  border-color: transparent var(--blue) transparent transparent;
+}
+
+.blue-lid::after {
+  border-color: var(--blue) transparent transparent transparent;
 }
