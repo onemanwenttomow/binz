@@ -8,7 +8,7 @@ const results = [];
 //   "bin": "Gelbe Tonne"
 // },
 
-fs.createReadStream("./2024.csv")
+fs.createReadStream(__dirname + "/2025.csv")
   .pipe(csv())
   .on("data", (data) => results.push(data))
   .on("end", () => {
@@ -21,8 +21,9 @@ fs.createReadStream("./2024.csv")
         bin: bin.replace('"', ""),
       };
     });
+    console.log(mappedData);
     fs.writeFileSync(
-      "./recycling-schedule.json",
+      __dirname + "/recycling-schedule.json",
       JSON.stringify(mappedData, null, 2)
     );
   });
