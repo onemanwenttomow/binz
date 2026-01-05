@@ -8,7 +8,7 @@ const results = [];
 //   "bin": "Gelbe Tonne"
 // },
 
-fs.createReadStream(__dirname + "/2025.csv")
+fs.createReadStream(__dirname + "/2026.csv")
   .pipe(csv())
   .on("data", (data) => results.push(data))
   .on("end", () => {

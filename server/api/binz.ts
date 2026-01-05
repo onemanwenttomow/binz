@@ -1,4 +1,4 @@
-import data from "../2025/recycling-schedule.json";
+import data from "../2026/recycling-schedule.json";
 
 // There are 8 pre-defined color sets available (gray, red, orange, yellow, green, teal, blue, indigo, purple, pink).
 
